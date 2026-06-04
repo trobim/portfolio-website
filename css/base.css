@@ -426,10 +426,9 @@ a:focus {
 	position: absolute;
 	top: 0;
 	right: 0;
-	/* Mobile: full width with padding */
 	width: 100%;
 	height: auto;
-	padding: 8vh 1.5rem 5vh;
+	padding: 4vh 1.5rem 5vh;
 	overflow: auto;
 }
 
@@ -744,6 +743,10 @@ textarea:hover {
 
 @media (max-width: 767px) {
 	/* Image fills entire viewport — override all height/top rules */
+	.slide {
+		position: relative;
+	}
+
 	.slide__img-wrap,
 	.slide--current .slide__img-wrap,
 	.slide--visible .slide__img-wrap {
@@ -774,6 +777,21 @@ textarea:hover {
 	.nav .icon {
 		width: 2.2rem;
 		height: 2.2rem;
+	}
+
+	/* Arrows point left / right on mobile */
+	.icon--navarrow-next {
+		transform: rotate(0deg);
+	}
+
+	.icon--navarrow-prev {
+		transform: rotate(180deg);
+	}
+
+	/* Override the 1023px rule that forces 4.5rem horizontal padding */
+	.content__item.content__item--current {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
 	}
 }
 
@@ -952,7 +970,7 @@ textarea:hover {
    Active panel: full width, equal horizontal padding
    ================================================ */
 
-@media (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1023px) {
 	.content__item.content__item--current {
 		width: 100%;
 		right: 0;
