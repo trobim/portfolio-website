@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+*.log
+error_log
+*.bat
+dev/
+
+# Hosting artifacts
+.hcflag
+.well-known/
+cgi-bin/
+lms/
