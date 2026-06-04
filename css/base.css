@@ -153,38 +153,6 @@ a:focus {
 }
 
 /* ================================================
-   MESSAGE OVERLAY - Mobile Warning
-   ================================================ */
-
-.message {
-	position: relative;
-	z-index: 100;
-	display: none;
-	padding: 1em;
-	text-align: center;
-	color: var(--color-bg);
-	background: var(--color-text);
-}
-
-/* Show on very small screens */
-@media (max-width: 479px), (max-height: 500px) {
-	.message {
-		position: fixed;
-		overflow: hidden;
-		width: 100%;
-		height: 100%;
-		z-index: 1001;
-		background: #0C0C0C;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		color: #ffffff;
-		padding: 2rem;
-		text-align: center;
-	}
-}
-
-/* ================================================
    ICONS
    ================================================ */
 
@@ -263,11 +231,10 @@ a:focus {
 	position: relative;
 	height: 100%;
 	grid-area: slide;
-	/* Mobile: center content with padding */
-	padding: 5vh 1rem;
+	padding: 0 1.5rem 5vh;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-end;
+	align-items: flex-start;
 }
 
 .slideshow--previewopen .slide {
@@ -287,10 +254,8 @@ a:focus {
 	overflow: hidden;
 	z-index: 100;
 	position: absolute;
-	/* Mobile: larger relative height */
-	height: 70%;
-	top: 15%;
-	/* Performance optimization */
+	height: 58%;
+	top: 4%;
 	will-change: transform;
 }
 
@@ -409,10 +374,9 @@ a:focus {
 
 .slide__number {
 	display: block;
-	/* Fluid scaling */
 	font-size: clamp(1.5rem, 3vw, 2rem);
 	font-weight: bold;
-	padding-top: 5vh;
+	padding-top: 1vh;
 }
 
 .slide__number::before {
@@ -421,11 +385,27 @@ a:focus {
 	margin: 0 1rem 0 0;
 }
 
-/* Hide title/subtitle/side on mobile by default */
-.slide__title,
-.slide__subtitle,
 .slide__side {
-	display: none;
+	display: block;
+	color: var(--color-side);
+	font-size: 0.7rem;
+	letter-spacing: 0.06em;
+	margin-bottom: 0.4rem;
+	z-index: 1000;
+	position: relative;
+}
+
+.slide__title {
+	display: block;
+	font-size: clamp(1.3rem, 4.5vw, 2rem);
+	margin: 0 0 0.25rem;
+}
+
+.slide__subtitle {
+	display: block;
+	font-size: clamp(0.8rem, 2.5vw, 1rem);
+	font-weight: normal;
+	margin: 0;
 }
 
 /* ================================================
@@ -727,13 +707,9 @@ textarea:hover {
    ================================================ */
 
 @media (min-width: 480px) {
-	.slide {
-		padding: 6vh 1.5rem;
-	}
-	
 	.slide__img-wrap {
-		height: 72%;
-		top: 14%;
+		height: 60%;
+		top: 4%;
 	}
 }
 
@@ -743,18 +719,14 @@ textarea:hover {
 
 @media (min-width: 600px) {
 	.slide {
-		padding: 7vh 2rem;
+		padding: 0 2rem 5vh;
 	}
-	
+
 	.slide__img-wrap {
-		height: 75%;
-		top: 12.5%;
+		height: 62%;
+		top: 4%;
 	}
-	
-	.slide__number {
-		padding-top: 7vh;
-	}
-	
+
 	.content__item {
 		width: 90%;
 		padding: 8vh 2.5rem 5vh;
@@ -763,6 +735,35 @@ textarea:hover {
 	
 	.content__text {
 		text-align: justify;
+	}
+}
+
+/* ================================================
+   MOBILE NAV ARROWS - Above slide text, large touch targets
+   ================================================ */
+
+@media (max-width: 767px) {
+	.nav {
+		pointer-events: auto;
+		cursor: pointer;
+		width: 3.5rem;
+		height: 3.5rem;
+	}
+
+	.nav--prev {
+		top: auto;
+		left: 1.5rem;
+		bottom: calc(5vh + 7rem);
+	}
+
+	.nav--next {
+		bottom: calc(5vh + 7rem);
+		right: 1.5rem;
+	}
+
+	.nav .icon {
+		width: 2.2rem;
+		height: 2.2rem;
 	}
 }
 
@@ -934,6 +935,34 @@ textarea:hover {
 
 @media (min-width: 834px) {
 	/* content panel layout governed by 768px+ rules */
+}
+
+/* ================================================
+   BELOW DESKTOP - max 1023px
+   Active panel: full width, equal horizontal padding
+   ================================================ */
+
+@media (max-width: 1023px) {
+	.content__item.content__item--current {
+		width: 100%;
+		right: 0;
+		padding-left: 4.5rem;
+		padding-right: 4.5rem;
+	}
+
+	.slide--current .slide__img-wrap,
+	.slide--visible .slide__img-wrap {
+		height: 85%;
+		top: 7.5%;
+	}
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+	.slideshow {
+		grid-template-columns: 18% 56% 18%;
+		grid-column-gap: 4%;
+	}
 }
 
 /* ================================================

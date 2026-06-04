@@ -143,16 +143,29 @@
         // RESPONSIVE: Reduced rotation angles on mobile
         calcTransforms() {
             const isMobile = window.innerWidth < 768;
-            
+            const isTabletPortrait = window.innerWidth >= 768 && window.innerWidth < 1024;
+
             if (isMobile) {
-                // Simplified transforms for mobile (less dramatic angles)
+                // Single-slide mobile: prev/next fully off-screen, no peek, no diagonal
                 this.transforms = [
-                    {x: -1*(winsize.width + this.width), y: -1*(winsize.height/2), rotation: -15},
-                    {x: -1*(winsize.width/2), y: -1*(winsize.height/4), rotation: 0},
+                    {x: -1*(winsize.width + this.width), y: 0, rotation: 0},
+                    {x: -winsize.width, y: 0, rotation: 0},
                     {x: 0, y: 0, rotation: 0},
-                    {x: winsize.width/2, y: winsize.height/4, rotation: 0},
-                    {x: winsize.width + this.width, y: winsize.height/2, rotation: 15},
-                    {x: -1*(winsize.width/2 - this.width/2), y: 0, rotation: 0}
+                    {x: winsize.width, y: 0, rotation: 0},
+                    {x: winsize.width + this.width, y: 0, rotation: 0},
+                    {x: 0, y: 0, rotation: 0}
+                ];
+            } else if (isTabletPortrait) {
+                // 18%/56%/18% grid with 4% gaps
+                // Center col starts at 22%vw, right col starts at 82%vw → side offset = 60%vw
+                const sideOffset = winsize.width * 0.60;
+                this.transforms = [
+                    {x: -1*(winsize.width/2+this.width), y: -1*(winsize.height/2+this.height), rotation: -30},
+                    {x: -sideOffset, y: -1*(winsize.height/2-this.height/3), rotation: 0},
+                    {x: 0, y: 0, rotation: 0},
+                    {x: sideOffset, y: winsize.height/2-this.height/3, rotation: 0},
+                    {x: winsize.width/2+this.width, y: winsize.height/2+this.height, rotation: 30},
+                    {x: -1*(winsize.width/2 - this.width/2 - winsize.width*0.075), y: 0, rotation: 0}
                 ];
             } else {
                 // Original transforms for desktop
@@ -510,6 +523,12 @@
             for (let slide of this.slides) {
                 slide.DOM.imgWrap.addEventListener('click', () => this.clickFn(slide));
             }
+
+            // Nav arrow buttons (pointer-events enabled on mobile via CSS)
+            const navNext = this.DOM.el.querySelector('.nav--next');
+            const navPrev = this.DOM.el.querySelector('.nav--prev');
+            if (navNext) navNext.addEventListener('click', () => this.navigate('next'));
+            if (navPrev) navPrev.addEventListener('click', () => this.navigate('prev'));
 
             this.resizeFn = () => {
                 // Reposition the slides.
