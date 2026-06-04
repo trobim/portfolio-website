@@ -10,18 +10,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
       - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ftp.fabioqueiros.ch
-          username: fbbq@fabioqueiros.ch
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .versions/
-            index.zip
-            CHANGELOG.md
-            serve.bat
+        env:
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -c "
+            set ftp:ssl-allow yes;
+            set ftp:ssl-force no;
+            set ftp:passive-mode yes;
+            open -u 'fbbq@fabioqueiros.ch','$FTP_PASSWORD' ftp.fabioqueiros.ch;
+            mirror --reverse --verbose --no-perms \
+              --exclude-glob .git \
+              --exclude-glob .versions/ \
+              --exclude-glob index.zip \
+              --exclude-glob CHANGELOG.md \
+              --exclude-glob serve.bat \
+              --exclude-glob cgi-bin/ \
+              ./ /;
+          "
