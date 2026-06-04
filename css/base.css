@@ -430,6 +430,7 @@ a:focus {
 	height: auto;
 	padding: 4vh 1.5rem 5vh;
 	overflow: auto;
+	transition: background-color 0.4s ease;
 }
 
 .content__text:last-child { 
@@ -745,7 +746,7 @@ textarea:hover {
 	/* Image fills entire viewport — override all height/top rules */
 	.slide {
 		position: relative;
-		padding-bottom: 8vh;
+		padding-bottom: 12vh;
 	}
 
 	.slide__img-wrap,
@@ -761,7 +762,7 @@ textarea:hover {
 		pointer-events: auto;
 		cursor: pointer;
 		width: 2.5rem;
-		height: 3.5rem;
+		height: 10rem;
 	}
 
 	.nav--prev {
