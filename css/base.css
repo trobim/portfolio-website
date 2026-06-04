@@ -497,6 +497,23 @@ a:focus {
 	outline: none;
 }
 
+.content__nav--bottom {
+	margin-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+.content__close--bottom {
+	background: none;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--color-text);
+	cursor: pointer;
+}
+
 /* ================================================
    CONTENT TEXT ELEMENTS - Fluid typography
    ================================================ */
@@ -987,6 +1004,28 @@ textarea:hover {
 
 
 /* -- Case study sections ----------------------------------------- */
+.case-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+.case-info strong {
+    opacity: 0.45;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.68rem;
+    margin-right: 0.4rem;
+}
+.case-info a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
 .case-meta {
     margin-bottom: 1.5rem;
     font-size: 0.8rem;
