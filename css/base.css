@@ -982,3 +982,54 @@ textarea:hover {
 		color: black;
 	}
 }
+
+
+/* -- Case study sections ----------------------------------------- */
+.case-meta {
+    margin-bottom: 1.5rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+.case-sections {
+    overflow-y: auto;
+    max-height: 55vh;
+    padding-right: 0.5rem;
+}
+.case-section {
+    margin-bottom: 2rem;
+}
+.case-section__title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+}
+.case-section__body p {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+.case-section__body ul {
+    margin-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+}
+.case-section__body li {
+    margin-bottom: 0.25rem;
+}
+.case-section__body img {
+    max-width: 100%;
+    margin: 0.75rem 0;
+    display: block;
+}
+.highlight-box {
+    border-left: 3px solid currentColor;
+    padding: 0.5rem 0.75rem;
+    margin: 0.75rem 0;
+    opacity: 0.85;
+}
+.img-placeholder {
+    font-size: 0.8rem;
+    opacity: 0.4;
+    font-style: italic;
+}
