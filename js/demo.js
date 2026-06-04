@@ -427,7 +427,7 @@
             this.DOM.title = this.DOM.el.querySelector('.content__title');
             this.DOM.subtitle = this.DOM.el.querySelector('.content__subtitle');
             this.DOM.text = this.DOM.el.querySelector('.content__text');
-            this.DOM.backCtrl = this.DOM.el.parentNode.querySelector('.content__close');
+            this.DOM.backCtrl = this.DOM.el.querySelector('.content__close');
             this.DOM.backCtrl.addEventListener('click', () => slideshow.hideContent());
         }
 
