@@ -745,6 +745,7 @@ textarea:hover {
 	/* Image fills entire viewport — override all height/top rules */
 	.slide {
 		position: relative;
+		padding-bottom: 8vh;
 	}
 
 	.slide__img-wrap,
@@ -759,18 +760,18 @@ textarea:hover {
 	.nav {
 		pointer-events: auto;
 		cursor: pointer;
-		width: 3.5rem;
+		width: 2.5rem;
 		height: 3.5rem;
 	}
 
 	.nav--prev {
 		top: auto;
 		left: 1.5rem;
-		bottom: calc(5vh + 7rem);
+		bottom: calc(8vh + 9rem);
 	}
 
 	.nav--next {
-		bottom: calc(5vh + 7rem);
+		bottom: calc(8vh + 9rem);
 		right: 1.5rem;
 	}
 
@@ -792,6 +793,29 @@ textarea:hover {
 	.content__item.content__item--current {
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;
+	}
+
+	/* Fix scroll: constrain height so overflow-y activates */
+	.content__item--current {
+		height: 100%;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.content__text {
+		font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+		max-width: 100%;
+		max-height: none;
+		overflow: visible;
+		column-count: 1;
+		text-align: left;
+		padding-top: 3px;
+		padding-right: 0px;
+		padding-bottom: 50px;
+	}
+
+	.case-sections {
+		padding-right: 0px;
 	}
 }
 

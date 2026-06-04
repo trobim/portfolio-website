@@ -530,6 +530,18 @@
             if (navNext) navNext.addEventListener('click', () => this.navigate('next'));
             if (navPrev) navPrev.addEventListener('click', () => this.navigate('prev'));
 
+            // Swipe navigation on touch devices
+            let touchStartX = 0;
+            this.DOM.el.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+            this.DOM.el.addEventListener('touchend', (e) => {
+                const delta = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(delta) > 50) {
+                    this.navigate(delta > 0 ? 'next' : 'prev');
+                }
+            }, { passive: true });
+
             this.resizeFn = () => {
                 // Reposition the slides.
                 this.nextSlide.setRight(this.isContentOpen);
