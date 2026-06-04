@@ -20,6 +20,7 @@ jobs:
           lftp -c "
             set ftp:ssl-allow yes;
             set ftp:ssl-force no;
+            set ssl:verify-certificate no;
             set ftp:passive-mode yes;
             open -u 'fbbq@fabioqueiros.ch','$FTP_PASSWORD' ftp.fabioqueiros.ch;
             mirror --reverse --verbose --no-perms \
