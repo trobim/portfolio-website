@@ -63,6 +63,8 @@ body {
     --color-link-hover: #baaed8;
 	--color-deco: rgba(46, 72, 80, 0.15);
 	--color-side: #bbc6e8;
+	--color-panel-bg: #0c0c0c;
+	--color-rule: rgba(255, 255, 255, 0.1);
 	font-family: Arial, Helvetica, sans-serif;
 	min-height: 100vh;
 	overflow: hidden;
@@ -72,6 +74,18 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	padding: 0;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme="light"] {
+	--color-text: #1c1814;
+	--color-bg: #f0ebe0;
+	--color-link: #4a5a8a;
+	--color-link-hover: #2e3d6b;
+	--color-deco: rgba(100, 80, 40, 0.12);
+	--color-side: #5a6a9a;
+	--color-panel-bg: #DFD8CA;
+	--color-rule: rgba(0, 0, 0, 0.1);
 }
 
 /* ================================================
@@ -444,7 +458,7 @@ a:focus {
 }
 
 .content__item.content__item--current {
-	background-color: #111516;
+	background-color: var(--color-panel-bg);
 }
 
 /* ================================================
@@ -531,7 +545,7 @@ a:focus {
 .content__highlight {
 	font-size: clamp(1.25rem, 2.5vw, 1.5rem);
 	font-weight: bold;
-	color: #6678a2;
+	color: var(--color-link);
 }
 
 .content__text {
@@ -985,6 +999,18 @@ textarea:hover {
 	}
 }
 
+body[data-theme="light"] .content__item--current::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.15);
+}
+
+body[data-theme="light"] .content__item--current::-webkit-scrollbar-thumb {
+	background: rgba(0,0,0,0.35);
+}
+
+body[data-theme="light"] .content__item--current::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(0,0,0,0.1);
+}
+
 /* ================================================
    TABLET LANDSCAPE - 834px+
    ================================================ */
@@ -1099,7 +1125,7 @@ textarea:hover {
     gap: 0.2rem;
     margin-bottom: 1.5rem;
     padding-bottom: 1.25rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid var(--color-rule);
     font-size: 0.8rem;
     line-height: 1.5;
 }
@@ -1161,3 +1187,40 @@ textarea:hover {
     opacity: 0.4;
     font-style: italic;
 }
+
+/* ================================================
+   THEME TOGGLE
+   ================================================ */
+
+.theme-toggle {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 10001;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.35rem;
+    color: var(--color-text);
+    opacity: 0.5;
+    transition: opacity 0.2s ease, color 0.3s ease;
+    line-height: 0;
+}
+
+.theme-toggle:hover {
+    opacity: 1;
+}
+
+.theme-toggle svg {
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+
+/* Dark mode → show sun (click to go light) */
+.theme-toggle .icon-sun  { display: block; }
+.theme-toggle .icon-moon { display: none; }
+
+/* Light mode → show moon (click to go dark) */
+body[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
+body[data-theme="light"] .theme-toggle .icon-moon { display: block; }

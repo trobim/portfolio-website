@@ -17,7 +17,7 @@
 		supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.");
 		</script>
 	</head>
-	<body class="loading">
+	<body class="loading" data-theme="dark">
 		<svg class="hidden">
 			<symbol id="icon-arrow" viewBox="0 0 24 24">
 				<title>arrow</title>
@@ -37,6 +37,22 @@
 				<polygon fill="#fff" fill-rule="nonzero" points="204 0 168.3 35.7 311.1 178.5 0 178.5 0 229.5 311.1 229.5 168.3 372.3 204 408 408 204"></polygon>
 			</symbol>
 		</svg>
+		<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+			<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+				<circle cx="12" cy="12" r="4"/>
+				<line x1="12" y1="2" x2="12" y2="5"/>
+				<line x1="12" y1="19" x2="12" y2="22"/>
+				<line x1="2" y1="12" x2="5" y2="12"/>
+				<line x1="19" y1="12" x2="22" y2="12"/>
+				<line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/>
+				<line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
+				<line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/>
+				<line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>
+			</svg>
+			<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+			</svg>
+		</button>
 		<main>
 			<div class="slideshow">
 				<div class="slideshow__deco"></div>
@@ -1061,5 +1077,27 @@
 		</script>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.4.1/jquery.fancybox.js"></script>
+		<script>
+		(function() {
+			var btn = document.getElementById('themeToggle');
+			btn.addEventListener('click', function() {
+				var body = document.body;
+				var goLight = body.getAttribute('data-theme') !== 'light';
+				body.setAttribute('data-theme', goLight ? 'light' : 'dark');
+				swapSliderImages(goLight);
+			});
+
+			function swapSliderImages(goLight) {
+				document.querySelectorAll('.slide__img').forEach(function(el) {
+					if (goLight) {
+						if (!el.dataset.darkSrc) el.dataset.darkSrc = el.style.backgroundImage;
+						el.style.backgroundImage = el.dataset.darkSrc.replace('slider.jpg', 'slider-light.jpg');
+					} else {
+						if (el.dataset.darkSrc) el.style.backgroundImage = el.dataset.darkSrc;
+					}
+				});
+			}
+		})();
+		</script>
 	</body>
 </html>
