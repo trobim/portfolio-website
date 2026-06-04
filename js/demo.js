@@ -411,9 +411,9 @@
 
         // Shows the current slide's texts.
         showTexts(animation = true) {
-            TweenMax.set(this.DOM.texts.wrap, {opacity: 1});
+            TweenMax.set(this.DOM.texts.wrap, {opacity: 1, x: 0, y: 0});
             if (this.DOM.texts.side) {
-                TweenMax.set(this.DOM.texts.side, {opacity: 1});
+                TweenMax.set(this.DOM.texts.side, {opacity: 1, x: 0, y: 0});
             }
 
             if ( animation ) { 
