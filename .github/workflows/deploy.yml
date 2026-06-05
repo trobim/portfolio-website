@@ -23,7 +23,7 @@ jobs:
             set ssl:verify-certificate no;
             set ftp:passive-mode yes;
             open -u 'fbbq@fabioqueiros.ch','$FTP_PASSWORD' ftp.fabioqueiros.ch;
-            mirror --reverse --verbose --no-perms \
+            mirror --reverse --verbose --no-perms --ignore-time \
               --exclude-glob .git \
               --exclude-glob .versions/ \
               --exclude-glob index.zip \
