@@ -63,7 +63,7 @@ body {
     --color-link-hover: #baaed8;
 	--color-deco: rgba(46, 72, 80, 0.15);
 	--color-side: #bbc6e8;
-	--color-panel-bg: #0c0c0c;
+	--color-panel-bg: #111516;
 	--color-rule: rgba(255, 255, 255, 0.1);
 	font-family: Arial, Helvetica, sans-serif;
 	min-height: 100vh;
@@ -1224,3 +1224,11 @@ body[data-theme="light"] .content__item--current::-webkit-scrollbar-thumb:window
 /* Light mode → show moon (click to go dark) */
 body[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
 body[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+
+@media (max-width: 767px) {
+    .theme-toggle {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
