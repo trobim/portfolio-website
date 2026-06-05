@@ -834,6 +834,10 @@ textarea:hover {
 	.case-sections {
 		padding-right: 0px;
 	}
+
+	.content__item--current .content__number {
+		display: none;
+	}
 }
 
 /* ================================================
@@ -1197,13 +1201,14 @@ body[data-theme="light"] .content__item--current::-webkit-scrollbar-thumb:window
     top: 1.25rem;
     right: 1.25rem;
     z-index: 10001;
-    background: none;
+    background: rgba(128, 128, 128, 0.25);
     border: none;
+    border-radius: 50%;
     cursor: pointer;
-    padding: 0.35rem;
+    padding: 0.5rem;
     color: var(--color-text);
-    opacity: 0.5;
-    transition: opacity 0.2s ease, color 0.3s ease;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, color 0.3s ease, background 0.2s ease;
     line-height: 0;
 }
 
@@ -1212,8 +1217,8 @@ body[data-theme="light"] .content__item--current::-webkit-scrollbar-thumb:window
 }
 
 .theme-toggle svg {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     display: block;
 }
 
@@ -1225,10 +1230,28 @@ body[data-theme="light"] .content__item--current::-webkit-scrollbar-thumb:window
 body[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
 body[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
-@media (max-width: 767px) {
-    .theme-toggle {
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+/* ================================================
+   SKELETON LOADING
+   ================================================ */
+@keyframes skeleton-shimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
 }
+
+.slide__img[data-bg],
+img.is-loading {
+    background: linear-gradient(
+        90deg,
+        rgba(128, 128, 128, 0.08) 25%,
+        rgba(128, 128, 128, 0.2)  50%,
+        rgba(128, 128, 128, 0.08) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+img.is-loading {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+

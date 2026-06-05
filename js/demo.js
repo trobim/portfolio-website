@@ -466,6 +466,10 @@
                 opacity: 0,
                 y: 10
             }, 0.01);
+
+            // Reset scroll after fade-out completes (0.3s + 4×0.01s stagger = 340ms)
+            var el = this.DOM.el;
+            setTimeout(function() { el.scrollTop = 0; }, 350);
         }
     }
 
