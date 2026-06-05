@@ -1213,7 +1213,7 @@
 
 					if (goLight) {
 						if (!el.dataset.darkSrc) el.dataset.darkSrc = baseSrc;
-						var lightSrc = el.dataset.darkSrc.replace('slider.jpg', 'slider-light.jpg');
+						var lightSrc = el.dataset.darkSrc.replace('slider.webp', 'slider-light.webp');
 						if (loaded) { el.style.backgroundImage = lightSrc; }
 						else { el.dataset.bg = lightSrc; }
 					} else {
