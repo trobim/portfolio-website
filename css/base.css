@@ -1238,7 +1238,6 @@ body[data-theme="light"] .theme-toggle .icon-moon { display: block; }
     100% { background-position: -200% center; }
 }
 
-.slide__img[data-bg],
 img.is-loading {
     background: linear-gradient(
         90deg,
@@ -1253,5 +1252,33 @@ img.is-loading {
 img.is-loading {
     width: 100%;
     aspect-ratio: 16 / 9;
+}
+
+/* ================================================
+   SLIDE PROGRESS BAR
+   ================================================ */
+
+#slide-progress {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 9000;
+    background: var(--color-rule);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+#slide-progress.is-hidden {
+    opacity: 0;
+}
+
+#slide-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--color-text);
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
